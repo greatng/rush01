@@ -6,7 +6,7 @@
 /*   By: pngamcha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 14:51:56 by pngamcha          #+#    #+#             */
-/*   Updated: 2022/01/22 15:10:22 by pngamcha         ###   ########.fr       */
+/*   Updated: 2022/01/22 15:46:23 by pngamcha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 #include <unistd.h>
 
 void	ft_printboard(int *board);
+
+void	ft_printerror(void)
+{
+	write(1, "Error\n", 6);
+}
 
 int	main(int argc, char **argv)
 {
@@ -27,23 +32,24 @@ int	main(int argc, char **argv)
 	clue = (int *)malloc(16 * sizeof(int));
 	while (argv[argc - 1][i] != '\0')
 	{
-		if (argv[argc - 1][i] >= '1' && argv[argc - 1][i] <= '4')
-		{
+		if (argv[argc - 1][i] >= '1' && argv[argc - 1][i] <= '4' && i % 2 == 0)
 			clue[j++] = argv[argc - 1][i] - 48;
-			//printf("%d\n", clue[j - 1]);
-		}
 		else if (argv[argc - 1][i] != ' ')
-			printf("Error 1\n");
+		{
+			ft_printerror();
+			return (0);
+		}
 		i++;
 	}
 	if (j != 16)
-		printf("Error 2\n");
+	{
+		ft_printerror();
+		return (0);
+	}
 	ft_printboard(clue);
 }
 //ft_iscluevalid
 //ft_fillvoid
-//ft_printboard
-//still missing some condition check like 11 12 21 22 the program won't error even it should do.
 
 void	ft_printboard(int *board)
 {
