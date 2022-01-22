@@ -25,7 +25,7 @@ void	ft_printerror(int n)
 
 void	ft_clue(int *clue, int i, int j)
 {
-	while(clue[i] && i < 16)
+	while (clue[i] && i < 16)
 	{
 		if (i == 4)
 		j = 15;
@@ -48,6 +48,7 @@ void	ft_clue(int *clue, int i, int j)
 	}
 	printf("The clues are valid\n");
 }
+
 int	main(int argc, char **argv)
 {
 	int	*clue;
