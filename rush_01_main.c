@@ -22,43 +22,44 @@ void	ft_printerror()
 	exit (0);
 }
 
+void	ft_fillboard(int board[4][4], int i)
+{
+	int	n;
+	
+	n=0;
+	while (n++ < 4)
+	{
+		if ( i >= 0 && i <= 3)
+		board[0][i + n - 1] = n;
+		if ( i >= 4 && i <= 7)
+		board[3][(i % 4) + n - 1] = n;
+		if ( i >= 8 && i <= 11)
+		board[i - 9 + n][0] = n;
+		if ( i >= 12 && i <= 15)
+		board[(i % 4) + n - 1][3] = n;
+	}
+}
+
 //this function here will check if clue 1 is available it will fill the rest
-void	ft_check1(int *clue, int board[][], int i)
+void	ft_check1(int *clue, int board[4][4], int i)
 {
 	while (i < 16)
 	{
-		if (clue[i] == 1 )
+		if (clue[i] == 4 )
 		{
-			if ( i >= 0 && i <= 3)
-			{
-			board[0][i] = 4;
-			}
-			if ( i >= 4 && i <= 7)
-			{
-			board[3][i % 4] = 4;
-			}
-			if ( i >= 8 && i <= 11)
-			{
-			board[i - 8][0] = 4;
-			}
-			if ( i >= 12 && i <= 15)
-			{
-			board[i % 4][3] = 4;
-			}
+			ft_fillboard(board, i);
 		}
 		i++;
 	}
 	ft_printboard(board);
 }
-*/
+
 //we will check if there is 1 in clues then fill 4
 void	ft_start(int *clue)
 {
 	int	board[4][4];
 	int	i;
 
-	//*board = (int *)malloc(4 * sizeof(int));
-	//board[4] = (int *)malloc(4 * sizeof(int));
 	i = 0;
 	while (i < 16)
 	{
@@ -81,8 +82,7 @@ void	ft_start(int *clue)
 		}
 		i++;
 	}
-	ft_printboard(board); 
-	ft_check1(clue board, 0);
+	ft_check1(clue, board, 0);
 }
 
 void	ft_clue(int *clue, int i, int j)
@@ -108,7 +108,6 @@ void	ft_clue(int *clue, int i, int j)
 		i++;
 		j++;
 	}
-	printf("The clues are valid\n");
 	ft_start(clue);
 }
 
