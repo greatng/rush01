@@ -1,5 +1,5 @@
 #include "rush01.h"
-
+//board preparation start from clues checker -> fill with 4 -> fill 1 2 3 4 -> send it ot backtracker 
 void	ft_fillboard(int board[4][4], int i)
 {
 	int	n;
@@ -18,9 +18,14 @@ void	ft_fillboard(int board[4][4], int i)
 	}
 }
 
-//this function here will check if clue 1 is available it will fill the rest
 void	ft_check1(int *clue, int board[4][4], int i)
 {
+    while (i < 16)
+	{
+		board[i / 4][i % 4] = 0;
+		i++;
+	}
+    i = 0;
 	while (i < 16)
 	{
 		if (clue[i] == 4 )
@@ -31,18 +36,12 @@ void	ft_check1(int *clue, int board[4][4], int i)
 	}
 }
 
-//we will check if there is 1 in clues then fill 4
 void	ft_start(int *clue)
 {
 	int	board[4][4];
 	int	i;
 
-	i = 0;
-	while (i < 16)
-	{
-		board[i / 4][i % 4] = 0;
-		i++;
-	}
+    ft_check1(clue, board, 0);
 	i = 0;
 	while (i < 16)
 	{
@@ -59,8 +58,7 @@ void	ft_start(int *clue)
 		}
 		i++;
 	}
-	ft_check1(clue, board, 0);
-	ft_printboard(board); //now we have partial filled board
+	ft_printboard(board); //now we have a partial filled board, we should send to backtracker from here
 }
 
 void	ft_clue(int *clue, int i, int j)

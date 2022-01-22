@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "rush01.h"
-
+//printer only as they named
 void	ft_printboard(int board[4][4])
 {
 	int		i;

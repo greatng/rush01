@@ -2,6 +2,7 @@
     "C_Cpp.errorSquiggles": "Disabled",
     "git.ignoreLimitWarning": true,
     "files.associations": {
-        "rush01.h": "c"
+        "rush01.h": "c",
+        "stdlib.h": "c"
     }
 }
