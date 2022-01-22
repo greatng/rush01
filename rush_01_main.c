@@ -51,7 +51,6 @@ void	ft_check1(int *clue, int board[4][4], int i)
 		}
 		i++;
 	}
-	ft_printboard(board);
 }
 
 //we will check if there is 1 in clues then fill 4
@@ -83,6 +82,7 @@ void	ft_start(int *clue)
 		i++;
 	}
 	ft_check1(clue, board, 0);
+	ft_printboard(board); //now we have partial filled board
 }
 
 void	ft_clue(int *clue, int i, int j)
