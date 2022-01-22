@@ -19,6 +19,20 @@ void	ft_printboard(int *board);
 void	ft_printerror(void)
 {
 	write(1, "Error\n", 6);
+	exit (0);
+}
+
+void	ft_clue(int *clue)
+{
+	int	i;
+
+	i = 0;
+	while(clue[i] && i < 8)
+	{
+		if ((clue[i] == 1 && clue[i + 8] == 4) || (clue[i] == 4 && clue[i + 8] == 1))
+			ft_printerror();
+		i++;
+	}
 }
 
 int	main(int argc, char **argv)
@@ -37,16 +51,16 @@ int	main(int argc, char **argv)
 		else if (argv[argc - 1][i] != ' ')
 		{
 			ft_printerror();
-			return (0);
+			//return (0);
 		}
 		i++;
 	}
 	if (j != 16)
 	{
 		ft_printerror();
-		return (0);
+		//return (0);
 	}
-	ft_printboard(clue);
+	ft_clue(clue);
 }
 //ft_iscluevalid
 //ft_fillvoid
