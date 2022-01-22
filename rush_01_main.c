@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void	ft_printboard(int *board);
+void	ft_printboard(int board[4][4]);
 
 void	ft_printerror()
 {
@@ -23,56 +23,66 @@ void	ft_printerror()
 }
 
 //this function here will check if clue 1 is available it will fill the rest
-void	ft_check1(int *clue, int *board)
+void	ft_check1(int *clue, int board[][], int i)
 {
-	int	i;
-
-	i = 0;
 	while (i < 16)
 	{
-		if (clue[i] == 4)
+		if (clue[i] == 1 )
 		{
 			if ( i >= 0 && i <= 3)
-			board[i] = 1;
+			{
+			board[0][i] = 4;
+			}
 			if ( i >= 4 && i <= 7)
-			board[i + 8] = 1;
+			{
+			board[3][i % 4] = 4;
+			}
 			if ( i >= 8 && i <= 11)
-			board[(i - 8) * 4] = 1;
+			{
+			board[i - 8][0] = 4;
+			}
 			if ( i >= 12 && i <= 15)
-			board[(i - 11) * 4 - 1] = 1;
+			{
+			board[i % 4][3] = 4;
+			}
 		}
 		i++;
 	}
 	ft_printboard(board);
 }
-
+*/
 //we will check if there is 1 in clues then fill 4
 void	ft_start(int *clue)
 {
-	int	*board;
+	int	board[4][4];
 	int	i;
 
-	board = (int *)malloc(16 * sizeof(int));
+	//*board = (int *)malloc(4 * sizeof(int));
+	//board[4] = (int *)malloc(4 * sizeof(int));
 	i = 0;
-	while (i++ <= 16)
-		board[i - 1] = 0 ;
+	while (i < 16)
+	{
+		board[i / 4][i % 4] = 0;
+		i++;
+	}
 	i = 0;
 	while (i < 16)
 	{
 		if (clue[i] == 1 )
 		{
 			if ( i >= 0 && i <= 3)
-			board[i] = 4;
+			board[0][i] = 4;
 			if ( i >= 4 && i <= 7)
-			board[i + 8] = 4;
+			board[3][i % 4] = 4;
 			if ( i >= 8 && i <= 11)
-			board[(i - 8) * 4] = 4;
+			board[i - 8][0] = 4;
 			if ( i >= 12 && i <= 15)
-			board[(i - 11) * 4 - 1] = 4;
+			board[i % 4][3] = 4;
 		}
 		i++;
 	}
-	ft_check1(clue, board);
+	ft_printboard(board); 
+	ft_check1(clue board, 0);
 }
 
 void	ft_clue(int *clue, int i, int j)
@@ -130,7 +140,7 @@ int	main(int argc, char **argv)
 //ft_wallchecker
 //ft_fillvoid
 
-void	ft_printboard(int *board)
+void	ft_printboard(int board[4][4])
 {
 	int		i;
 	char	temp;
@@ -138,7 +148,7 @@ void	ft_printboard(int *board)
 	i = 0;
 	while (i < 16)
 	{
-		temp = board[i] + 48;
+		temp = board[i / 4][i % 4] + 48;
 		write(1, &temp, 1);
 		if (i % 4 == 3)
 		{
