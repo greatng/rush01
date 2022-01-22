@@ -16,25 +16,38 @@
 
 void	ft_printboard(int *board);
 
-void	ft_printerror(void)
+void	ft_printerror(int n)
 {
+	printf("%d\n", n);
 	write(1, "Error\n", 6);
 	exit (0);
 }
 
-void	ft_clue(int *clue)
+void	ft_clue(int *clue, int i, int j)
 {
-	int	i;
-
-	i = 0;
-	while(clue[i] && i < 8)
+	while(clue[i] && i < 16)
 	{
-		if ((clue[i] == 1 && clue[i + 8] == 4) || (clue[i] == 4 && clue[i + 8] == 1))
-			ft_printerror();
+		if (i == 4)
+		j = 15;
+		if (i == 8)
+		j = 3;
+		if (i == 12)
+		j = 7;
+		if (clue[i] == 1 && clue[j] == 1)
+			ft_printerror(i);
+		if (clue[i] == 2 && clue[j] == 4)
+			ft_printerror(2);
+		if (clue[i] == 3 && clue[j] == 3)
+			ft_printerror(3);
+		if (clue[i] == 3 && clue[j] == 3)
+			ft_printerror(4);
+		if (clue[i] == 4 && clue[j] == 4)
+			ft_printerror(5);
 		i++;
+		j--;
 	}
+	printf("The clues are valid\n");
 }
-
 int	main(int argc, char **argv)
 {
 	int	*clue;
@@ -50,17 +63,15 @@ int	main(int argc, char **argv)
 			clue[j++] = argv[argc - 1][i] - 48;
 		else if (argv[argc - 1][i] != ' ')
 		{
-			ft_printerror();
-			//return (0);
+			ft_printerror(0);
 		}
 		i++;
 	}
 	if (j != 16)
 	{
-		ft_printerror();
-		//return (0);
+		ft_printerror(16);
 	}
-	ft_clue(clue);
+	ft_clue(clue, 0, 11);
 }
 //ft_iscluevalid
 //ft_fillvoid
