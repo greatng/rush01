@@ -18,12 +18,14 @@ int	main(int argc, char **argv)
 		else if (argv[argc - 1][i] != ' ')
 		{
 			ft_printerror();
+			break;
 		}
 		i++;
 	}
 	if (j != 16)
 	{
 		ft_printerror();
-	}
-	ft_clue(clue, 0, 4);
+	} 
+	else
+		ft_clue(clue, 0, 4);
 }

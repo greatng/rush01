@@ -25,5 +25,4 @@ void	ft_printboard(int board[4][4])
 void	ft_printerror()
 {
 	write(1, "Error\n", 6);
-	exit (0);
 }

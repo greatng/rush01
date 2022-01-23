@@ -34,10 +34,6 @@ int ft_solve(int board[N][N], int *clue, int i, int j)
     //  column start from 0
     if (j == N)
     {
-        /*
-        printf("We need to check row here %d\n", j);
-        ft_clueCheck
-        */
         i++;
         j = 0;
     }
