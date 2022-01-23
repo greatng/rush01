@@ -18,6 +18,8 @@ int    ft_top(int board[N][N], int *clue, int i, int j)
         }
         if (count != clue[j])
         {
+            printf("%d %d\n", clue[j], count);
+            printf("Top reject\n");
             return (0);
         }
         i = 0;
@@ -41,6 +43,8 @@ int    ft_btm(int board[N][N], int *clue, int i, int j)
         }
         if (count != clue[j+4])
         {
+            printf("%d %d\n", clue[j+4], count);
+            printf("Btm reject\n");
             return (0);
         }
         i = 3;
@@ -62,8 +66,10 @@ int    ft_left(int board[N][N], int *clue, int i, int j)
             }
             j++;
         }
-        if (count != clue[i+8])
+        if (count != clue[i + 8])
         {
+            printf("%d %d\n", clue[i+8], count);
+            printf("Left reject\n");
             return (0);
         }
         j = 0;
@@ -89,6 +95,8 @@ int    ft_right(int board[N][N], int *clue, int i, int j)
         printf("Test %d\n", count);
         if (count != clue[i+12])
         {
+            printf("%d %d\n", clue[i + 12], count);
+            printf("Right reject");
             return (0);
         }
         j = 3;

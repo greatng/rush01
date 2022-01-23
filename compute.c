@@ -23,6 +23,7 @@ int ft_solve(int board[N][N], int *clue, int i, int j)
     //int copy[N][N];
     if (i == N - 1 && j== N)
     {
+        ft_printboard(board);
         if (ft_checker(board, clue) == 0)
             return 0;
         return 1;
