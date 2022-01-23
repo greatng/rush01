@@ -3,8 +3,7 @@
 #define N 4
 #define UNASSIGNED 0
 
-bool isSafe(int board[N][N], int *clue, int i, int j, int n);
- 
+bool isSafe(int board[N][N], int i, int j, int n);
 /* Takes a partially filled-in grid
    and attempts to assign values to
    all unassigned locations in such
@@ -14,8 +13,7 @@ bool isSafe(int board[N][N], int *clue, int i, int j, int n);
 int ft_solve(int board[N][N], int *clue, int i, int j)
 {
     int n;
-    int ans;
-    //int copy[N][N];
+
     if (i == N - 1 && j== N)
     {
         if (ft_checker(board, clue) == 0)
@@ -42,7 +40,7 @@ int ft_solve(int board[N][N], int *clue, int i, int j)
     while (n < 5)
     {
         // Check if looks promising
-        if (isSafe(board, clue, i, j, n))
+        if (isSafe(board, i, j, n))
         {
             // Make tentative assignment
             board[i][j] = n;
@@ -102,12 +100,11 @@ bool colCheck(int board[N][N], int j, int n)
 /* Returns a boolean which indicates
 whether it will be legal to assign
    num to the given row, col location. */
-bool isSafe(int board[N][N], int *clue, int i, int j, int n)
+bool isSafe(int b[N][N], int i, int j, int n)
 {
      
     /* Check if 'num' is not already placed
        in current row, current column and
        current 3x3 box */
-    return !rowCheck(board, i, n) && !colCheck(board, j, n) && board[i][j] == UNASSIGNED;
-}
- 
+    return !rowCheck(b, i, n) && !colCheck(b, j, n) && b[i][j] == UNASSIGNED;
+} 

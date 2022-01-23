@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prepboard.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pngamcha <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/23 20:17:54 by pngamcha          #+#    #+#             */
+/*   Updated: 2022/01/23 20:18:10 by pngamcha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdbool.h>
 #include <stdio.h>
 #include "rush01.h"
 #define UNASSIGNED 0
 #define N 4
-//board preparation start from clues checker -> fill with 4 -> fill 1 2 3 4 -> send it ot backtracker 
+
 void	ft_fillboard(int board[N][N], int i)
 {
 	int	n;
@@ -45,7 +57,7 @@ void	ft_start(int *clue)
 	int	board[N][N];
 	int	i;
 
-    ft_check1(clue, board, 0);
+	ft_check1(clue, board, 0);
 	i = 0;
 	while (i < 16)
 	{
@@ -63,9 +75,7 @@ void	ft_start(int *clue)
 		i++;
 	}
 	if (ft_solve(board, clue, 0, 0))
-	{
 		ft_printboard(board);
-	}
 	else
 		ft_printerror();
 }
