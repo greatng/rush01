@@ -6,7 +6,9 @@
 
 // Checks whether it will be legal
 // to assign num to the given row, col
-bool isSafe(int board[N][N], int i, int j, int n);
+bool clueCheck(int board[N][N], int clue);
+
+bool isSafe(int board[N][N], int *clue, int i, int j, int n);
  
 /* Takes a partially filled-in grid
    and attempts to assign values to
@@ -14,9 +16,10 @@ bool isSafe(int board[N][N], int i, int j, int n);
    a way to meet the requirements
   for Sudoku solution (non-duplication
   across rows, columns, and boxes) */
-int ft_solve(int board[N][N], int i, int j)
+int ft_solve(int board[N][N], int *clue, int i, int j)
 {
     int n;
+    //int copy[N][N];
     
     if (i == N - 1 && j== N)
         return 1;
@@ -26,6 +29,7 @@ int ft_solve(int board[N][N], int i, int j)
     //  column start from 0
     if (j == N)
     {
+        //printf("We need to check row here\n");
         i++;
         j = 0;
     }
@@ -34,25 +38,30 @@ int ft_solve(int board[N][N], int i, int j)
     // of the grid already contains
     // value >0, we iterate for next column
     if (board[i][j] > 0)
-        return ft_solve(board, i, j + 1);
+        return ft_solve(board, clue, i, j + 1);
 
     n = 1;  //Consider digits 1 to 4
     while (n < 5)
     {
         // Check if looks promising
-        if (isSafe(board, i, j, n))
+        if (isSafe(board, clue, i, j, n))
         {
             // Make tentative assignment
             board[i][j] = n;
+            //printf("i = %d, j = %d, n = %d\n", i, j, n);
             // Return, if success, yay!
-            if (ft_solve(board, i, j))
+            if (ft_solve(board, clue, i, j))
+            {
+                //printf("Recurred\n");
                 return (1);
+            }
             // Failure, unmake & try again
             board[i][j] = UNASSIGNED;
         }
+        //printf("WHile loop\n");
         n++;
     }
-   
+    //printf("Out of loop\n");
     // This triggers backtracking
     return (0);
 }
@@ -93,32 +102,14 @@ bool colCheck(int board[N][N], int j, int n)
 }
  
 /* Returns a boolean which indicates
-   whether an assigned entry
-   within the specified 3x3 box
-   matches the given number. 
-bool clueCheck(int board[N][N], int boxStartRow,int boxStartCol, int num)
-{
-    for (int row = 0; row < 3; row++)
-        for (int col = 0; col < 3; col++)
-            if (
-                board[row + boxStartRow]
-                  [col + boxStartCol] ==
-                                   num)
-                return true;
-    return false;
-}
-*/
-/* Returns a boolean which indicates
 whether it will be legal to assign
    num to the given row, col location. */
-bool isSafe(int board[N][N], int i, int j, int n)
+bool isSafe(int board[N][N], int *clue, int i, int j, int n)
 {
      
     /* Check if 'num' is not already placed
        in current row, current column and
        current 3x3 box */
-    return !rowCheck(board, i, n)
-           && !colCheck(board, j, n)
-           && board[i][j] == UNASSIGNED;
+    return !rowCheck(board, i, n) && !colCheck(board, j, n) && board[i][j] == UNASSIGNED;
 }
  

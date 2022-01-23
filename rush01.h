@@ -14,5 +14,5 @@ void	ft_start(int *clue);
 
 void	ft_clue(int *clue, int i, int j);
 
-int    ft_solve(int board[N][N], int i, int j);
+int    ft_solve(int board[N][N], int *clue, int i, int j);
 #endif

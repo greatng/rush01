@@ -62,10 +62,10 @@ void	ft_start(int *clue)
 		}
 		i++;
 	}
-	if (ft_solve(board, 0, 0))
+	if (ft_solve(board, clue, 0, 0))
 	{
 		ft_printboard(board);
-		printf("ํัYeah");
+		printf("ํYeah");
 	}
 }
 
