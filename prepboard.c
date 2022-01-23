@@ -1,6 +1,10 @@
+#include <stdbool.h>
+#include <stdio.h>
 #include "rush01.h"
+#define UNASSIGNED 0
+#define N 4
 //board preparation start from clues checker -> fill with 4 -> fill 1 2 3 4 -> send it ot backtracker 
-void	ft_fillboard(int board[4][4], int i)
+void	ft_fillboard(int board[N][N], int i)
 {
 	int	n;
 	
@@ -18,11 +22,11 @@ void	ft_fillboard(int board[4][4], int i)
 	}
 }
 
-void	ft_check1(int *clue, int board[4][4], int i)
+void	ft_check1(int *clue, int board[N][N], int i)
 {
     while (i < 16)
 	{
-		board[i / 4][i % 4] = 0;
+		board[i / 4][i % 4] = UNASSIGNED;
 		i++;
 	}
     i = 0;
@@ -38,7 +42,7 @@ void	ft_check1(int *clue, int board[4][4], int i)
 
 void	ft_start(int *clue)
 {
-	int	board[4][4];
+	int	board[N][N];
 	int	i;
 
     ft_check1(clue, board, 0);
@@ -58,7 +62,11 @@ void	ft_start(int *clue)
 		}
 		i++;
 	}
-	ft_printboard(board); //now we have a partial filled board, we should send to backtracker from here
+	if (ft_solve(board, 0, 0))
+	{
+		ft_printboard(board);
+		printf("ํัYeah");
+	}
 }
 
 void	ft_clue(int *clue, int i, int j)
