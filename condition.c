@@ -8,11 +8,11 @@ int    ft_top(int board[N][N], int *clue, int i, int j)
     int minus;
     while (j != 4)
     {
-        //printf("%d\n", board[i][j]);
+        minus = 0;
         count = 1;
         while (i < 3 && board[i][j] != 4)
         {
-            if (board[i][j] < board[i+1][j])
+            if (board[i + minus][j] < board[i+1][j])
                 count++;
             else
                 minus--;
@@ -20,8 +20,6 @@ int    ft_top(int board[N][N], int *clue, int i, int j)
         }
         if (count != clue[j])
         {
-            printf("top %d %d\n", clue[j], count);
-            printf("Top reject\n");
             return (0);
         }
         i = 0;
@@ -39,7 +37,6 @@ int    ft_btm(int board[N][N], int *clue, int i, int j)
         count = 1;
         while (i > 0 && board[i][j] != 4)
         {
-            //printf("%d\n", board[i][j]);
             if (board[i - minus][j] < board[i-1][j])
                 count++;
             else
@@ -48,8 +45,6 @@ int    ft_btm(int board[N][N], int *clue, int i, int j)
         }
         if (count != clue[j+4])
         {
-            printf("C:%d c%d %d\n", j+4 ,clue[j+4], count);
-            printf("Btm reject\n");
             return (0);
         }
         i = 3;
@@ -75,8 +70,6 @@ int    ft_left(int board[N][N], int *clue, int i, int j)
         }
         if (count != clue[i + 8])
         {
-            printf("left %d %d\n", clue[i+8], count);
-            printf("Left reject\n");
             return (0);
         }
         j = 0;
@@ -104,7 +97,6 @@ int    ft_right(int board[N][N], int *clue, int i, int j)
         }
         if (count != clue[i+12])
         {
-            printf("right % d %d %d\n\n\n", i, clue[i + 12], count);
             return (0);
         }
         j = 3;

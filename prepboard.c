@@ -14,11 +14,11 @@ void	ft_fillboard(int board[N][N], int i)
 		if ( i >= 0 && i <= 3)
 		board[0][i + n - 1] = n;
 		if ( i >= 4 && i <= 7)
-		board[(i % 4) - n + 1][i - 4] = n;
+		board[4 - n][i - 4] = n;
 		if ( i >= 8 && i <= 11)
 		board[i - 9 + n][0] = n;
 		if ( i >= 12 && i <= 15)
-		board[(i % 4) + n - 1][3] = n;
+		board[i % 4][4 - n] = n; 
 	}
 }
 
@@ -47,7 +47,6 @@ void	ft_start(int *clue)
 
     ft_check1(clue, board, 0);
 	i = 0;
-	ft_printboard(board);
 	while (i < 16)
 	{
 		if (clue[i] == 1 )
@@ -63,11 +62,12 @@ void	ft_start(int *clue)
 		}
 		i++;
 	}
-	ft_printboard(board);
 	if (ft_solve(board, clue, 0, 0))
 	{
 		ft_printboard(board);
 	}
+	else
+		ft_printerror();
 }
 
 void	ft_clue(int *clue, int i, int j)

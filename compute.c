@@ -1,12 +1,7 @@
 #include <stdbool.h>
 #include "rush01.h"
-#include <stdio.h>
 #define N 4
 #define UNASSIGNED 0
-
-// Checks whether it will be legal
-// to assign num to the given row, col
-bool clueCheck(int board[N][N], int clue);
 
 bool isSafe(int board[N][N], int *clue, int i, int j, int n);
  
@@ -23,7 +18,6 @@ int ft_solve(int board[N][N], int *clue, int i, int j)
     //int copy[N][N];
     if (i == N - 1 && j== N)
     {
-        ft_printboard(board);
         if (ft_checker(board, clue) == 0)
             return 0;
         return 1;
