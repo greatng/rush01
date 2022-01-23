@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "rush01.h"
+
 //this main only check if argument is correct
 int	main(int argc, char **argv)
 {

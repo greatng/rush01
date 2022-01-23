@@ -65,7 +65,6 @@ void	ft_start(int *clue)
 	if (ft_solve(board, clue, 0, 0))
 	{
 		ft_printboard(board);
-		printf("ํYeah");
 	}
 }
 

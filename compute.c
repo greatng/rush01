@@ -19,17 +19,24 @@ bool isSafe(int board[N][N], int *clue, int i, int j, int n);
 int ft_solve(int board[N][N], int *clue, int i, int j)
 {
     int n;
+    int ans;
     //int copy[N][N];
-    
     if (i == N - 1 && j== N)
+    {
+        if (ft_checker(board, clue) == 0)
+            return 0;
         return 1;
+    }
  
     //  Check if column value  becomes 4 ,
     //  we move to next row and
     //  column start from 0
     if (j == N)
     {
-        //printf("We need to check row here\n");
+        /*
+        printf("We need to check row here %d\n", j);
+        ft_clueCheck
+        */
         i++;
         j = 0;
     }
